@@ -12,14 +12,15 @@ year    DEFW 0 ; year = 0       // Change this code
 age     DEFW 1 ; age = 1        // Change this code
     
 main
- ; this code does print "you were born in " + str(birth) // DO NOT change the instructions below (except for part 5)
- ADR R0, born
- SVC 3
- LDR R0, birth ; make sure this will work!
- SVC 4
- MOV R0, #10
- SVC 0
-
+    LDR R5, birth
+    ; this code does print "you were born in " + str(birth) // DO NOT change the instructions below (except for part 5)
+    ADR R0, born
+    SVC 3
+    MOV R0, R5 ; make sure this will work!
+    SVC 4
+    MOV R0, #10
+    SVC 0
+    
     LDR R5, birth    ; year = birth + 1 // Change this code 
     LDR R6, year
     ADD R6, R5, #1     
@@ -33,11 +34,11 @@ loop
 
     ADR R0, were
     SVC 3
-    LDR R0, age ; make sure this will work!
+    MOV R0, R7 ; make sure this will work!
     SVC 4
     ADR R0, in
     SVC 3
-    LDR R0, year ; make sure this will work!
+    MOV R0, R6 ; make sure this will work!
     SVC 4
     MOV R0, #10
     SVC 0
@@ -50,13 +51,11 @@ loop
     STR R7, age
     B loop ; } //              //Change this code
 skip
-	
-    ; this code does print "you are " + str(age) + "this year" // DO NOT change the instructions below (except for part 5)
+	; this code does print "you are " + str(age) + "this year" // DO NOT change the instructions below (except for part 5)
 	ADR R0, are
 	SVC 3
-	LDR R0, age ; make sure this will work!
+	MOV R0, R7 ; make sure this will work!
 	SVC 4
 	ADR R0, this
 	SVC 3
 	SVC 2 ; stop
-
